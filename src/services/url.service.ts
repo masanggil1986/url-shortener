@@ -1,4 +1,7 @@
+import { customAlphabet } from "nanoid";
 import { prisma } from "../lib/prisma";
+
+const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 6);
 
 function isValidUrl(url: string) {
   try {
@@ -17,7 +20,6 @@ export async function shorten(originalUrl: string) {
     throw new Error("Invalid URL");
   }
 
-  const { nanoid } = await import("nanoid");
   const code = nanoid();
 
   await prisma.url.create({
