@@ -22,7 +22,9 @@ jobs:
         run: npm install
 
       - name: Prisma 마이그레이션
-        run: npx prisma migrate deploy && npx prisma generate
+        run: |
+          export DATABASE_URL="file:./dev.db"
+          npx prisma migrate deploy && npx prisma generate
 
       - name: 타입 체크
         run: npx tsc --noEmit
