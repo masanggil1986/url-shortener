@@ -29,3 +29,13 @@ export async function shorten(originalUrl: string) {
 
   return code;
 }
+
+export async function findByCode(code: string) {
+  const url = await prisma.url.findUnique({
+    where: { code },
+  });
+  if (!url) {
+    throw new Error("URL not found");
+  }
+  return url.original;
+}
