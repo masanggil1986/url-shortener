@@ -21,6 +21,9 @@ jobs:
       - name: 의존성 설치
         run: npm install
 
+      - name: Prisma 마이그레이션
+        run: npx prisma migrate deploy && npx prisma generate
+
       - name: 타입 체크
         run: npx tsc --noEmit
 
