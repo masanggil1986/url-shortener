@@ -11,7 +11,7 @@ jest.mock("../src/lib/prisma", () => ({
 }));
 
 jest.mock("nanoid", () => ({
-  nanoid: jest.fn(() => "test-code-123"),
+  customAlphabet: jest.fn(() => jest.fn(() => "test-code-123")),
 }));
 
 const mockPrisma = prisma as jest.Mocked<typeof prisma>;

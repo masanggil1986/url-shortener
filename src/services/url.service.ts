@@ -1,8 +1,6 @@
 import { customAlphabet } from "nanoid";
 import { prisma } from "../lib/prisma";
 
-const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 6);
-
 function isValidUrl(url: string) {
   try {
     const parsedUrl = new URL(url);
@@ -13,6 +11,8 @@ function isValidUrl(url: string) {
 }
 
 export async function shorten(originalUrl: string) {
+  const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 6);
+
   if (!originalUrl) {
     throw new Error("URL is required");
   }
