@@ -1,0 +1,30 @@
+name: 프로덕션 배포
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 소스코드 받아오기
+        uses: actions/checkout@v5
+
+      - name: Node.js 설치
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/*'
+
+      - name: 의존성 설치
+        run: npm install
+
+      - name: 타입 체크
+        run: npx tsc --noEmit
+
+      - name: 테스트 실행
+        run: npm test
+
+  # deploy:
