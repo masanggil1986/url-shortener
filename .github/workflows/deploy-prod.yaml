@@ -47,7 +47,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           overwrite: true
-          source: "."
+          source: "./**,!.git/**"
           target: "/home/ec2-user/url-shortener"
 
       - name: SSH 로 원격 서버에 접속하여 배포 스크립트 실행
